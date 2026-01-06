@@ -1,20 +1,20 @@
 <template>
   <div>
     <!-- Hero -->
-    <section class="bg-gradient-to-r from-primary-700 to-primary-900 text-white py-16">
+    <section class="bg-gradient-to-r from-primary-700 to-primary-900 text-white py-10 sm:py-16">
       <div class="container-main">
-        <h1 class="text-4xl font-bold mb-4 text-white">Документы</h1>
-        <p class="text-xl text-primary-100">Нормативные правовые акты городского округа</p>
+        <h1 class="text-2xl sm:text-4xl font-bold mb-3 sm:mb-4 text-white">Документы</h1>
+        <p class="text-lg sm:text-xl text-primary-100">Нормативные правовые акты городского округа</p>
       </div>
     </section>
 
-    <div class="container-main py-12">
+    <div class="container-main py-8 sm:py-12">
       <!-- Фильтры -->
-      <div class="flex flex-wrap gap-4 mb-8">
+      <div class="flex flex-wrap gap-2 sm:gap-4 mb-6 sm:mb-8">
         <button 
           v-for="type in docTypes" 
           :key="type.value"
-          class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
+          class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-colors"
           :class="activeType === type.value ? 'bg-primary-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'"
           @click="activeType = type.value"
         >
@@ -23,12 +23,12 @@
       </div>
 
       <!-- Поиск -->
-      <div class="mb-8">
+      <div class="mb-6 sm:mb-8">
         <input 
           v-model="searchQuery"
           type="search" 
           placeholder="Поиск по документам..."
-          class="w-full md:w-96 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+          class="w-full md:w-96 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm sm:text-base"
         />
       </div>
 
@@ -37,14 +37,25 @@
         <div 
           v-for="doc in filteredDocs" 
           :key="doc.id"
-          class="bg-white rounded-xl shadow-sm border p-5 hover:shadow-md transition-shadow flex items-start gap-4"
+          class="bg-white rounded-xl shadow-sm border p-4 sm:p-5 hover:shadow-md transition-shadow flex flex-col sm:flex-row items-start gap-4"
         >
-          <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
-            <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-            </svg>
+          <div class="flex items-start gap-4 w-full sm:w-auto">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 sm:w-6 sm:h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <div class="flex-1 sm:hidden">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-xs font-medium text-primary-600 bg-primary-50 px-2 py-0.5 rounded">{{ doc.type }}</span>
+                <span class="text-xs text-gray-400">{{ doc.date }}</span>
+              </div>
+              <h3 class="font-semibold mb-1 text-sm">{{ doc.title }}</h3>
+              <p class="text-xs text-gray-500">{{ doc.number }}</p>
+            </div>
           </div>
-          <div class="flex-1">
+
+          <div class="flex-1 hidden sm:block">
             <div class="flex items-center gap-2 mb-1">
               <span class="text-xs font-medium text-primary-600 bg-primary-50 px-2 py-0.5 rounded">{{ doc.type }}</span>
               <span class="text-xs text-gray-400">{{ doc.date }}</span>
@@ -52,8 +63,12 @@
             <h3 class="font-semibold mb-1">{{ doc.title }}</h3>
             <p class="text-sm text-gray-500">{{ doc.number }}</p>
           </div>
-          <button class="px-4 py-2 text-sm font-medium text-primary-600 hover:bg-primary-50 rounded-lg transition-colors">
-            Скачать PDF
+          
+          <button class="w-full sm:w-auto px-4 py-2 text-sm font-medium text-primary-600 hover:bg-primary-50 rounded-lg transition-colors border sm:border-transparent border-gray-100 mt-2 sm:mt-0 flex justify-center items-center gap-2">
+            <span>Скачать PDF</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
           </button>
         </div>
       </div>

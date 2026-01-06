@@ -1,26 +1,26 @@
 <template>
   <div>
     <!-- Hero секция -->
-    <section class="bg-gradient-to-r from-primary-700 to-primary-900 text-white py-16">
+    <section class="bg-gradient-to-r from-primary-700 to-primary-900 text-white py-10 sm:py-16">
       <div class="container-main">
         <div class="max-w-3xl">
-          <h1 class="text-4xl md:text-5xl font-bold mb-4 text-white">
+          <h1 class="text-2xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-white">
             Добро пожаловать в Луганск
           </h1>
-          <p class="text-xl text-primary-100 mb-8">
+          <p class="text-base sm:text-xl text-primary-100 mb-6 sm:mb-8">
             Официальный портал муниципального образования городской округ город Луганск 
             Луганской Народной Республики
           </p>
-          <div class="flex flex-wrap gap-4">
+          <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
             <NuxtLink 
               to="/news" 
-              class="bg-white text-primary-700 px-6 py-3 rounded-lg font-semibold hover:bg-primary-50 transition-colors no-underline"
+              class="bg-white text-primary-700 px-5 sm:px-6 py-3 rounded-lg font-semibold hover:bg-primary-50 transition-colors no-underline text-center"
             >
               Последние новости
             </NuxtLink>
             <NuxtLink 
               to="/documents" 
-              class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition-colors no-underline"
+              class="border-2 border-white text-white px-5 sm:px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition-colors no-underline text-center"
             >
               Документы
             </NuxtLink>
@@ -46,18 +46,18 @@
       </div>
     </section>
 
-    <div class="container-main py-12">
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div class="container-main py-8 sm:py-12">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
         <!-- Новости -->
         <div class="lg:col-span-2">
-          <div class="flex items-center justify-between mb-6">
-            <h2 class="text-2xl font-bold">Новости</h2>
+          <div class="flex items-center justify-between mb-4 sm:mb-6">
+            <h2 class="text-xl sm:text-2xl font-bold">Новости</h2>
             <NuxtLink to="/news" class="text-primary-600 hover:text-primary-700 text-sm font-medium">
               Все новости →
             </NuxtLink>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             <NewsCard 
               v-for="news in latestNews" 
               :key="news.id"
@@ -67,9 +67,9 @@
         </div>
 
         <!-- Боковая панель -->
-        <aside class="space-y-8">
+        <aside class="space-y-6 sm:space-y-8">
           <!-- Быстрые ссылки -->
-          <div class="bg-white rounded-xl shadow-sm border p-6">
+          <div class="bg-white rounded-xl shadow-sm border p-4 sm:p-6">
             <h3 class="font-semibold text-lg mb-4">Быстрые ссылки</h3>
             <ul class="space-y-3">
               <li>
@@ -100,7 +100,7 @@
           </div>
 
           <!-- Телефоны экстренных служб -->
-          <div class="bg-red-50 rounded-xl border border-red-200 p-6">
+          <div class="bg-red-50 rounded-xl border border-red-200 p-4 sm:p-6">
             <h3 class="font-semibold text-lg mb-4 text-red-800">Экстренные службы</h3>
             <ul class="space-y-2 text-sm">
               <li class="flex justify-between">

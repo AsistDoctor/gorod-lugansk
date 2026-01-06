@@ -22,3 +22,71 @@ body {
     -1px 1px 0 #1e3a8a,
     1px 1px 0 #1e3a8a;
 }
+
+/* ===== ВЕРСИЯ ДЛЯ СЛАБОВИДЯЩИХ ===== */
+
+/* Увеличенные шрифты */
+.font-large {
+  font-size: 120%;
+}
+
+.font-large h1 { font-size: 2.5rem; }
+.font-large h2 { font-size: 2rem; }
+.font-large h3 { font-size: 1.5rem; }
+.font-large p, .font-large li, .font-large span { font-size: 1.2rem; }
+
+.font-xlarge {
+  font-size: 140%;
+}
+
+.font-xlarge h1 { font-size: 3rem; }
+.font-xlarge h2 { font-size: 2.5rem; }
+.font-xlarge h3 { font-size: 2rem; }
+.font-xlarge p, .font-xlarge li, .font-xlarge span { font-size: 1.4rem; }
+
+/* Высококонтрастный режим */
+.accessibility-mode {
+  --bg-color: #000;
+  --text-color: #fff;
+  --link-color: #ffff00;
+  --border-color: #fff;
+}
+
+.accessibility-mode body {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+}
+
+.accessibility-mode * {
+  background-color: #000 !important;
+  color: #fff !important;
+  border-color: #fff !important;
+}
+
+.accessibility-mode a,
+.accessibility-mode button {
+  color: #ffff00 !important;
+  text-decoration: underline !important;
+}
+
+.accessibility-mode a:hover,
+.accessibility-mode button:hover {
+  color: #00ffff !important;
+}
+
+.accessibility-mode img {
+  filter: grayscale(100%) contrast(120%);
+}
+
+.accessibility-mode .bg-gradient-to-r,
+.accessibility-mode .bg-primary-700,
+.accessibility-mode .bg-primary-600,
+.accessibility-mode .bg-primary-50,
+.accessibility-mode .bg-gray-800,
+.accessibility-mode .bg-gray-100,
+.accessibility-mode .bg-gray-50,
+.accessibility-mode .bg-white,
+.accessibility-mode .bg-red-50,
+.accessibility-mode .bg-amber-50 {
+  background: #000 !important;
+}

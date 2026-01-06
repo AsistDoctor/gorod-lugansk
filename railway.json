@@ -1,0 +1,15 @@
+{
+  "$schema": "https://railway.app/railway.schema.json",
+  "services": [
+    {
+      "name": "backend",
+      "path": "backend",
+      "startCommand": "npm run start",
+      "buildCommand": "npm run build",
+      "envVars": {
+        "HOST": "0.0.0.0",
+        "PORT": "1337"
+      }
+    }
+  ]
+}

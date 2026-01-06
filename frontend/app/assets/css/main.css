@@ -4,6 +4,7 @@
 
 /* Базовые стили */
 body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   @apply bg-gray-50 text-gray-900 antialiased;
 }
 

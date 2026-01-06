@@ -26,8 +26,6 @@
 
       <div class="prose prose-lg max-w-none">
         <p>{{ news.content }}</p>
-        <p>Это демонстрационный текст новости. В реальной версии здесь будет полный текст статьи, загруженный из CMS Strapi.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
       </div>
     </article>
   </div>
@@ -35,6 +33,7 @@
 
 <script setup>
 const route = useRoute()
+const { apiBase } = useApi()
 
 const news = ref({
   id: route.params.id,
@@ -43,6 +42,18 @@ const news = ref({
   date: '2026-01-06',
   content: 'Полный текст новости будет загружаться из базы данных.'
 })
+
+const { data, error } = await useFetch(`/articles/${route.params.id}`, { baseURL: apiBase, query: { populate: '*' } })
+if (!error.value && data.value?.data) {
+  const n: any = data.value.data
+  news.value = {
+    id: n.id,
+    title: n.attributes.title,
+    category: n.attributes.category,
+    date: n.attributes.date,
+    content: n.attributes.content
+  }
+}
 
 const formatDate = (dateStr) => {
   return new Date(dateStr).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })

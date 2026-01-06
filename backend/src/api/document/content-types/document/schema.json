@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "documents",
+  "info": {
+    "singularName": "document",
+    "pluralName": "documents",
+    "displayName": "Documents"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": { "type": "string", "required": true },
+    "number": { "type": "string" },
+    "type": { "type": "string" },
+    "typeValue": { "type": "string" },
+    "date": { "type": "string" },
+    "file": { "type": "media", "allowedTypes": ["files"], "multiple": false }
+  }
+}

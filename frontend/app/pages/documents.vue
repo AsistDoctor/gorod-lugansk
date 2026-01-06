@@ -85,6 +85,7 @@
 
 <script setup>
 const route = useRoute()
+const { apiBase } = useApi()
 
 const activeType = ref(route.query.type || 'all')
 const searchQuery = ref('')
@@ -96,13 +97,27 @@ const docTypes = [
   { value: 'projects', label: 'Проекты' },
 ]
 
-const documents = ref([
-  { id: 1, title: 'О благоустройстве территории', number: '№ 123 от 01.01.2026', type: 'Распоряжение', typeValue: 'orders', date: '01.01.2026' },
-  { id: 2, title: 'Об утверждении бюджета', number: '№ 45 от 15.12.2025', type: 'Постановление', typeValue: 'resolutions', date: '15.12.2025' },
-  { id: 3, title: 'О проведении мероприятий', number: '№ 124 от 02.01.2026', type: 'Распоряжение', typeValue: 'orders', date: '02.01.2026' },
-  { id: 4, title: 'Проект развития инфраструктуры', number: 'Проект № 12', type: 'Проект', typeValue: 'projects', date: '10.12.2025' },
-  { id: 5, title: 'О режиме работы учреждений', number: '№ 46 от 20.12.2025', type: 'Постановление', typeValue: 'resolutions', date: '20.12.2025' },
-])
+const documents = ref([])
+
+const { data, error } = await useFetch('/documents', { baseURL: apiBase })
+if (!error.value && Array.isArray(data.value?.data)) {
+  documents.value = data.value.data.map((d: any) => ({
+    id: d.id,
+    title: d.attributes.title,
+    number: d.attributes.number,
+    type: d.attributes.type,
+    typeValue: d.attributes.typeValue,
+    date: d.attributes.date
+  }))
+} else {
+  documents.value = [
+    { id: 1, title: 'О благоустройстве территории', number: '№ 123 от 01.01.2026', type: 'Распоряжение', typeValue: 'orders', date: '01.01.2026' },
+    { id: 2, title: 'Об утверждении бюджета', number: '№ 45 от 15.12.2025', type: 'Постановление', typeValue: 'resolutions', date: '15.12.2025' },
+    { id: 3, title: 'О проведении мероприятий', number: '№ 124 от 02.01.2026', type: 'Распоряжение', typeValue: 'orders', date: '02.01.2026' },
+    { id: 4, title: 'Проект развития инфраструктуры', number: 'Проект № 12', type: 'Проект', typeValue: 'projects', date: '10.12.2025' },
+    { id: 5, title: 'О режиме работы учреждений', number: '№ 46 от 20.12.2025', type: 'Постановление', typeValue: 'resolutions', date: '20.12.2025' }
+  ]
+}
 
 const filteredDocs = computed(() => {
   let result = documents.value
